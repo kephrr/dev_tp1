@@ -4,8 +4,8 @@
 // Configuration de la base de données
 $host = 'mysql-kephrr.alwaysdata.net';
 $dbname = 'kephrr_tp2';
-$user = 'kephrr';
-$pass = 'YTRADIUS0';
+$user = 'kephrr_tp2';
+$pass = 'rootpasser';
 
 // Requête SQL statique qui sera exécutée
 $on_query = "UPDATE lampe SET etat = '1';";
