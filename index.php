@@ -65,10 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['off'])) {
             margin-top: 20px;
         }
         .error { color: red; }
+
+        @media (screen and min-width:1025px){
+            #title{
+                font-size : 32px;
+            }
+            button{
+                transform : scale(2);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Exécuteur de Requête SQL</h1>
+    <h1 id="title">Exécuteur de Requête SQL</h1>
     
     <form method="post">
         <button type="submit" name="on" id="power">Allumer</button>
