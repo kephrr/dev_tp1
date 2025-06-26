@@ -1,12 +1,19 @@
-# Utilise l'image officielle PHP en version 8.2 avec serveur CLI
-FROM php:8.2-cli
+# Utilise une image PHP avec Apache
+FROM php:8.2-apache
 
-# Copie les fichiers du projet dans /app
-WORKDIR /app
-COPY . /app
+# Active le module Apache rewrite
+RUN a2enmod rewrite
 
-# Expose le port 10000 pour Render
-EXPOSE 10000
+# Installe l'extension PDO MySQL
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Commande pour démarrer le serveur PHP intégré sur le port 10000
-CMD ["php", "-S", "0.0.0.0:10000", "-t", "/app"]
+# Copie votre fichier PHP dans le conteneur
+COPY sql_button.php /var/www/html/
+
+# Définit le document root d'Apache
+ENV APACHE_DOCUMENT_ROOT /var/www/html
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Expose le port 80
+EXPOSE 80
