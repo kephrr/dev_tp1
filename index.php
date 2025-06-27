@@ -45,14 +45,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['off'])) {
 ?>
 
 <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Intérupteur web</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
+        form{
+            width: 50vw;
+            display: flex;
+            justify-content: space-evenly;
+        }
         button { 
             padding: 10px 15px; 
+            margin: 10px;
             background: #4CAF50; 
             color: white; 
             border: none; 
@@ -66,18 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['off'])) {
         }
         .error { color: red; }
 
-        @media (screen and min-width:1025px){
-            #title{
-                font-size : 32px;
-            }
-            button{
-                transform : scale(2);
+        @media screen and (max-width:1025px){
+            *{
+                font-size : 100px;
             }
         }
     </style>
 </head>
 <body>
-    <h1 id="title">Exécuteur de Requête SQL</h1>
+    <h1 id="title">Intérupteur distant</h1>
     
     <form method="post">
         <button type="submit" name="on" id="power">Allumer</button>
@@ -90,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['off'])) {
         <h3>Résultats:</h3>
         <pre><?= print_r($results, true) ?></pre>
     <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-        <p>Aucun résultat trouvé.</p>
+        <p>Vous pouvez vérifier la lampe !!</p>
     <?php endif; ?>
 </body>
 </html>
